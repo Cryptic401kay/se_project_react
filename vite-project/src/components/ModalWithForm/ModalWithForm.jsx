@@ -2,12 +2,10 @@ import "./ModalWithForm.css";
 
 function ModalWithForm({ children, buttonText, title, activeModal, onClose }) {
   return (
-    <div
-      className={`modal ${activeModal === "add-garment" && "modal__opened"}`}
-    >
+    <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
-        <button className="modal__close" type="button" onClick={onClose}>
+        <button className="modal_close" type="button" onClick={onClose}>
           <img src="../src/assets/X-icon-grey.svg" alt="close icon" />
         </button>
         <form className="modal__form">

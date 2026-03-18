@@ -1,0 +1,37 @@
+.modal__content_type_img {
+  position: relative;
+  padding: 0;
+  height: 610px;
+  width: 498px;
+}
+
+.modal__img {
+  height: 498px;
+  width: 498px;
+  border-radius: 20px;
+}
+
+.modal__caption {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  padding-left: 32px;
+  padding-top: 20px;
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+.modal__weather {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  padding-left: 32px;
+  padding-bottom: 32px;
+  margin: 0;
+}
