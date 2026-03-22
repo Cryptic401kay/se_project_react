@@ -1,10 +1,24 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/X-icon-grey.svg";
 
-function ItemModal({ activeModal, onClose, card }) {
+function ItemModal({ onClose, card, isOpen }) {
+  const handleOverlayClick = () => {
+    onClose();
+  };
+
+  const handleContentClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
-      <div className="modal__content modal__content_type_img">
+    <div
+      className={`modal ${isOpen ? "modal_opened" : ""}`}
+      onClick={handleOverlayClick}
+    >
+      <div
+        className="modal__content modal__content_type_img"
+        onClick={handleContentClick}
+      >
         <button className="modal_close" type="button" onClick={onClose}>
           <img className="modal_close-img" src={closeIcon} alt="close icon" />
         </button>
