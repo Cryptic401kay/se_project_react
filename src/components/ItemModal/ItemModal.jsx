@@ -15,10 +15,7 @@ function ItemModal({ onClose, card, isOpen }) {
       className={`modal ${isOpen ? "modal_opened" : ""}`}
       onClick={handleOverlayClick}
     >
-      <div
-        className="modal__content modal__content_type_img"
-        onClick={handleContentClick}
-      >
+      <div className="modal__content_type_img" onClick={handleContentClick}>
         <button className="modal_close" type="button" onClick={onClose}>
           <img className="modal_close-img" src={closeIcon} alt="close icon" />
         </button>

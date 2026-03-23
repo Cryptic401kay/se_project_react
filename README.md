@@ -1,5 +1,7 @@
 # WTWR (What to Wear?)
 
+This project is compiled of HTML, CSS, JavaScript, and React.js. The features in the program include an active calendar and current location section, a panel that shows the temperature of your local area inside a responsive picture that represents your time of day (day, night) and local weather status (clear, rain, fog, etc), and a section showing recommended clothes for you to wear based on the weather. It also includes a feature that lets you add more clothing options based on weather type, featuring clothing name, and a picture of it. Finally it also shows a expanded view of each item on the list when you click on them, this will show the name of the item and the weather type its designed for.
+
 ## About the project
 
 The idea of the application is pretty simple - we make a call to an API, which then responds with the daily weather forecast. We collect the weather data, process it, and then based on the forecast, we recommend suitable clothing to the user.
