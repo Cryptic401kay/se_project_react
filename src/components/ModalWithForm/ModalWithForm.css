@@ -70,6 +70,7 @@
   letter-spacing: 0;
   padding-top: 8px;
   padding-left: 0;
+  cursor: pointer;
 }
 
 .modal__input:last-child {
@@ -126,9 +127,14 @@
   color: #000;
   opacity: 0.5;
   padding-bottom: 8px;
+  width: fit-content;
 }
 
-.modal__label_type_radio::after {
+.modal__label_type_radio:hover {
+  opacity: 1;
+}
+
+.modal__label_type_radio:active {
   opacity: 1;
 }
 

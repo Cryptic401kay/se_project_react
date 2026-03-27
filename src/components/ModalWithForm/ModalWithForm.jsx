@@ -18,10 +18,10 @@ function ModalWithForm({
     e.stopPropagation();
   };
 
-  const handleSubmit = (e) => {
+  /*const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(e);
-  };
+  };*/
 
   return (
     <div
@@ -33,7 +33,7 @@ function ModalWithForm({
         <button className="modal_close" type="button" onClick={onClose}>
           <img src={closeIcon} alt="Close" />
         </button>
-        <form className="modal__form" name={name} onSubmit={handleSubmit}>
+        <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
           <button className="modal__submit" type="submit">
             {buttonText}
