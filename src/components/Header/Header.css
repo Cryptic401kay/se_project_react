@@ -34,7 +34,7 @@
 .header__user-container {
   display: flex;
   align-items: center;
-  gap: 88px;
+  gap: 12px;
 }
 
 .header__username {
@@ -46,4 +46,9 @@
   line-height: 24px;
   letter-spacing: 0;
   color: #000;
+}
+
+.header__nav-link {
+  color: #000;
+  text-decoration: none;
 }
