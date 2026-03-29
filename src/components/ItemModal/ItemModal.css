@@ -39,3 +39,20 @@
   padding-bottom: 32px;
   margin: 0;
 }
+
+.modal__delete-btn {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  border: none;
+  background: none;
+  padding-right: 33.56px;
+  padding-left: 0;
+  position: absolute;
+  right: 0;
+  color: #ff4d00;
+  height: 13.62px;
+}

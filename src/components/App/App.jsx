@@ -11,6 +11,7 @@ import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import { defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "./context/CurrentTemperatureUnitContext";
+import { addItem, getItems, removeItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -37,10 +38,15 @@ function App() {
   const onAddItem = (inputValues) => {
     const newCardData = {
       name: inputValues.name,
-      link: inputValues.link,
+      imageUrl: inputValues.imageUrl,
       weather: inputValues.weather,
     };
-    setClothingItems([...clothingItems, newCardData]);
+
+    addItem(newCardData)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+      })
+      .catch(console.error);
   };
 
   const handleAddClick = () => {
@@ -74,6 +80,21 @@ function App() {
         setWeatherData(filteredData);
       })
       .catch(console.error);
+
+    getItems()
+      .then((data) => {
+        data.reverse();
+        setClothingItems(data);
+      })
+      .catch(console.error);
+
+    removeItem()
+      .then((itemID) => {
+        const filteredArray = arr.filter((itemID) => {
+          return itemID != itemID;
+        });
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -104,6 +125,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </div>
         <AddItemModal
           isOpen={activeModal === "add-garment"}
@@ -114,8 +136,8 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
+          onClick={removeItem}
         />
-        <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
