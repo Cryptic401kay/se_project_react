@@ -45,6 +45,7 @@ function App() {
     addItem(newCardData)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
+        closeActiveModal();
       })
       .catch(console.error);
   };
@@ -55,6 +56,12 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const onClick = () => {
+    itemID = !itemID;
+    clothingItems = clothingItems.filter(itemID);
+    closeActiveModal();
   };
 
   useEffect(() => {
@@ -87,16 +94,16 @@ function App() {
         setClothingItems(data);
       })
       .catch(console.error);
-
-    removeItem()
-      .then((itemID) => {
-        const filteredArray = arr.filter((itemID) => {
-          return itemID != itemID;
-        });
-      })
-      .catch(console.error);
   }, []);
 
+  /*removeItem(itemID)
+    .then((itemID) => {
+      const filteredArray = arr.filter((itemID) => {
+        return itemID != itemID;
+      });
+    })
+    .catch(console.error);
+   */
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -136,7 +143,7 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeActiveModal}
-          onClick={removeItem}
+          onClick={onClick}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

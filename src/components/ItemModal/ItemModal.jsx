@@ -12,7 +12,7 @@ function ItemModal({ onClose, card, isOpen, onClick }) {
   };
 
   const deleteItemHandler = () => {
-    removeItem();
+    onClick(card._id);
   };
 
   return (
