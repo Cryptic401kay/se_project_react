@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import { defaultClothingItems } from "../../utils/constants";
 import Footer from "../Footer/Footer";
-import CurrentTemperatureUnitContext from "./context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../hooks/context/CurrentTemperatureUnitContext";
 import { addItem, getItems, removeItem } from "../../utils/api";
 
 function App() {
