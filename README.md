@@ -12,6 +12,12 @@ The idea of the application is pretty simple - we make a call to an API, which t
 
 ## Deployment
 
-This current webpage is deployed in Github Pages
+This current webpage is deployed in Github Pages.
 
 - [Deployment Link](https://github.com/Cryptic401kay/se_project_react)
+
+## Project Pitch Video
+
+Check the video below for a detailed presentation of this project and all of its capabilities along with the challenges I faced during development.
+
+- [Deployment Link](https://www.loom.com/share/d76d4befa5e84054bf760e6a9653078a)
