@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -21,7 +21,7 @@ function App() {
     condition: "",
     isDay: true,
   });
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -58,10 +58,10 @@ function App() {
     setActiveModal("");
   };
 
-  const handleDeleteItem = (itemID) => {
-    removeItem(itemID)
+  const handleDeleteItem = (itemId) => {
+    removeItem(itemId)
       .then(() => {
-        clothingItems(clothingItems.filter((item) => item._id !== itemID));
+        setClothingItems((prev) => prev.filter((item) => item._id !== itemId));
         closeActiveModal();
       })
       .catch(console.error);
@@ -84,7 +84,7 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -121,8 +121,9 @@ function App() {
               path="/profile"
               element={
                 <Profile
-                  onCardClick={handleCardClick}
+                  handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             />

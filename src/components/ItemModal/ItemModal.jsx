@@ -1,6 +1,5 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/X-icon-grey.svg";
-import { removeItem } from "../../utils/api";
 
 function ItemModal({ onClose, card, isOpen, onClick }) {
   const handleOverlayClick = () => {
