@@ -20,8 +20,8 @@ function ItemModal({ onClose, card, isOpen, onClick }) {
       onClick={handleOverlayClick}
     >
       <div className="modal__content_type_img" onClick={handleContentClick}>
-        <button className="modal_close" type="button" onClick={onClose}>
-          <img className="modal_close-img" src={closeIcon} alt="close icon" />
+        <button className="modal__close" type="button" onClick={onClose}>
+          <img className="modal__close-img" src={closeIcon} alt="close icon" />
         </button>
         <img src={card.imageUrl} alt={card.name} className="modal__img" />
         <div className="modal__footer">

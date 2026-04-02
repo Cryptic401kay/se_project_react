@@ -26,7 +26,7 @@
   padding-bottom: 24px;
 }
 
-.modal_close {
+.modal__close {
   position: absolute;
   top: 20px;
   right: 28px;
@@ -34,7 +34,7 @@
   border: none;
 }
 
-.modal_close-img {
+.modal__close-img {
   background-color: transparent;
 }
 
