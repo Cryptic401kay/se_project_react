@@ -58,11 +58,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           {isSubmitAttempted && errors.name}
         </span>
       </label>
-      <label htmlFor="imageURL" className="modal__label modal__label-img">
+      <label htmlFor="imageUrl" className="modal__label modal__label-img">
         Image{" "}
         <input
           className={`modal__input modal__input_type_url${isSubmitAttempted && errors.imageUrl ? " modal__input--error" : ""}`}
-          id="imageURL"
+          id="imageUrl"
           name="imageUrl"
           placeholder="Image URL"
           value={values.imageUrl}

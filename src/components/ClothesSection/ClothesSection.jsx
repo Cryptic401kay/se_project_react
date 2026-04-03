@@ -17,11 +17,7 @@ export default function ClothesSection({
       <ul className="clothes-section__list">
         {clothingItems.map((item) => {
           return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={handleCardClick}
-            />
+            <ItemCard key={item.id} item={item} onCardClick={handleCardClick} />
           );
         })}
       </ul>

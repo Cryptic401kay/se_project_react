@@ -11,7 +11,7 @@ function ItemModal({ onClose, card, isOpen, onClick }) {
   };
 
   const deleteItemHandler = () => {
-    onClick(card._id);
+    onClick(card.id);
   };
 
   return (
