@@ -1,15 +1,17 @@
 .modal__content_type_img {
-  position: relative;
-  padding: 0;
-  height: 610px;
-  width: 498px;
-  box-sizing: border-box;
+  max-width: 496px;
+  width: 100%;
+  min-height: 436px;
   background-color: #fff;
   border-radius: 20px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 28px 28px 36px;
+  padding: 0;
+  overflow: hidden;
 }
 
 .modal__img {
-  max-height: fit-content;
   width: 100%;
   object-fit: contain;
   border-radius: 20px 20px 0 0;
