@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { coordinates, apiKey } from "../../utils/constants";
+import { apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -22,6 +22,7 @@ function App() {
     isDay: true,
   });
   const [clothingItems, setClothingItems] = useState([]);
+  const [userCoordinates, setUserCoordinates] = useState(null);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -83,8 +84,38 @@ function App() {
     };
   }, [activeModal]);
 
+  // Get user's geolocation on mount
   useEffect(() => {
-    getWeather(coordinates, apiKey)
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserCoordinates({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          // Fallback to default location if denied or error
+          setUserCoordinates({
+            latitude: 28.9402,
+            longitude: -81.3009,
+          });
+        },
+      );
+    } else {
+      // Geolocation not supported
+      setUserCoordinates({
+        latitude: 28.9402,
+        longitude: -81.3009,
+      });
+    }
+  }, []);
+
+  // Fetch weather and clothing items when coordinates are available
+  useEffect(() => {
+    if (!userCoordinates) return;
+
+    getWeather(userCoordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -97,7 +128,7 @@ function App() {
         setClothingItems(data);
       })
       .catch(console.error);
-  }, []);
+  }, [userCoordinates]);
 
   return (
     <CurrentTemperatureUnitContext.Provider

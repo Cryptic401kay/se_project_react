@@ -16,6 +16,8 @@ This current webpage is deployed in Github Pages.
 
 - [Deployment Link](https://github.com/Cryptic401kay/se_project_react)
 
+--NOTE for preview in VSCode run "npm run dev" then "npx json-server --watch db.json --port 3001"
+
 ## Project Pitch Video
 
 Check the video below for a detailed presentation of this project and all of its capabilities along with the challenges I faced during development.

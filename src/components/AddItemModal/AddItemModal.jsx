@@ -1,19 +1,35 @@
-import { useEffect } from "react";
-import { useForm } from "../../hooks/useForm";
+import { useEffect, useState } from "react";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
-  const defaultValues = { name: "", imageUrl: "", weather: "" };
+const defaultValues = { name: "", imageUrl: "", weather: "" };
 
-  const { values, setValues, handleChange } = useForm(defaultValues);
+const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
+  const { values, errors, isValid, handleChange, resetForm, validate } =
+    useFormWithValidation(defaultValues);
+  const [isSubmitAttempted, setIsSubmitAttempted] = useState(false);
 
   useEffect(() => {
-    if (isOpen) setValues(defaultValues);
-  }, [isOpen, setValues]);
+    if (isOpen) {
+      resetForm();
+      setIsSubmitAttempted(false);
+    }
+  }, [isOpen, resetForm]);
+
+  useEffect(() => {
+    if (isSubmitAttempted) {
+      validate();
+    }
+  }, [isSubmitAttempted, validate]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(values, handleChange);
+    setIsSubmitAttempted(true);
+    const currentErrors = validate();
+    if (Object.values(currentErrors).some((msg) => msg)) return;
+    onAddItem(values);
+    resetForm();
+    setIsSubmitAttempted(false);
   };
 
   return (
@@ -24,69 +40,65 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
       buttonText="Add garment"
+      isDisabled={!isValid}
     >
       <label htmlFor="name" className="modal__label modal__label-name">
         Name{" "}
         <input
-          type="text"
-          name="name"
-          required
-          className="modal__input modal__input_type_name"
+          className={`modal__input modal__input_type_name${isSubmitAttempted && errors.name ? " modal__input--error" : ""}`}
           id="name"
+          name="name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
         />
+        <span
+          className={`modal__error${isSubmitAttempted && errors.name ? " modal__error--visible" : ""}`}
+        >
+          {isSubmitAttempted && errors.name}
+        </span>
       </label>
       <label htmlFor="imageURL" className="modal__label modal__label-img">
         Image{" "}
         <input
-          type="url"
-          name="imageUrl"
-          required
-          className="modal__input modal__input_type_url"
+          className={`modal__input modal__input_type_url${isSubmitAttempted && errors.imageUrl ? " modal__input--error" : ""}`}
           id="imageURL"
+          name="imageUrl"
           placeholder="Image URL"
           value={values.imageUrl}
           onChange={handleChange}
         />
+        <span
+          className={`modal__error${isSubmitAttempted && errors.imageUrl ? " modal__error--visible" : ""}`}
+        >
+          {isSubmitAttempted && errors.imageUrl}
+        </span>
       </label>
       <fieldset className="modal__radio-btns">
         <legend className="modal__legend">Select the weather type:</legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
-          <input
-            type="radio"
-            required
-            id="hot"
-            className="modal__radio-input"
-            name="weather"
-            value="hot"
-            onChange={handleChange}
-          />{" "}
-          Hot
-        </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
-          <input
-            type="radio"
-            id="warm"
-            className="modal__radio-input"
-            name="weather"
-            value="warm"
-            onChange={handleChange}
-          />{" "}
-          Warm
-        </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
-          <input
-            type="radio"
-            id="cold"
-            className="modal__radio-input"
-            name="weather"
-            value="cold"
-            onChange={handleChange}
-          />{" "}
-          Cold
-        </label>
+        {["hot", "warm", "cold"].map((type) => (
+          <label
+            key={type}
+            htmlFor={type}
+            className="modal__label modal__label_type_radio"
+          >
+            <input
+              className={`modal__radio-input${isSubmitAttempted && errors.weather ? " modal__radio-input--error" : ""}`}
+              id={type}
+              name="weather"
+              type="radio"
+              value={type}
+              checked={values.weather === type}
+              onChange={handleChange}
+            />{" "}
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </label>
+        ))}
+        <span
+          className={`modal__error${isSubmitAttempted && errors.weather ? " modal__error--visible" : ""}`}
+        >
+          {isSubmitAttempted && errors.weather}
+        </span>
       </fieldset>
     </ModalWithForm>
   );

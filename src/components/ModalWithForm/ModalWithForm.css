@@ -77,6 +77,26 @@
   padding-top: 3px;
 }
 
+.modal__input--error,
+.modal__radio-input--error {
+  border: 1px solid #ff3b3b !important;
+  outline: none;
+}
+
+.modal__error {
+  color: #ff3b3b;
+  font-size: 12px;
+  min-height: 18px;
+  margin-top: 0px; /* Add space below the input */
+  margin-bottom: -15px; /* Add space before the next field */
+  display: block;
+  visibility: hidden;
+}
+
+.modal__error--visible {
+  visibility: visible;
+}
+
 .modal__radio-btns {
   border: none;
   padding: 0;
@@ -132,6 +152,7 @@
 
 .modal__label_type_radio:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 .modal__label_type_radio:active {
