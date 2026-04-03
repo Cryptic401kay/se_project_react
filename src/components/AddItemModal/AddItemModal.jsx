@@ -10,7 +10,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
   const [isSubmitAttempted, setIsSubmitAttempted] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
+    if (!isOpen) {
       resetForm();
       setIsSubmitAttempted(false);
     }
